@@ -32,7 +32,9 @@ class ToDoApp extends React.Component {
   toggleTodo(index){
     // console.log(this.state.todos[index]);
     var tempObj = this.state.todos[index];
+    console.log(tempObj);
     tempObj.completed = !tempObj.completed;
+    console.log(tempObj);
     dummyData.splice(index, 1, tempObj);
     this.setState({todos: dummyData});
   }

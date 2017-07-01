@@ -20,7 +20,10 @@ class InputLine extends React.Component {
   render() {
     return(
       <div>
-        <input type="text" onChange={(event) => this.handleTyping(event)} value={this.state.typedText} placeholder="todo..." className="form-control"  />
+        <input
+          type="text"
+          onChange={(event) => this.handleTyping(event)}
+          value={this.state.typedText} placeholder="todo..." className="form-control"  />
         <input type="submit" onClick={() => this.handleSubmit()} value="Submit" />
       </div>
     )

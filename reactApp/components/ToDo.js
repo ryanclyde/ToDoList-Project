@@ -7,10 +7,18 @@ class ToDo extends React.Component {
 
   render() {
     if(this.props.task.completed) {
-      return(<li onClick={() => this.props.toggle(this.props.index)} ><button onClick={() => this.props.xClick(this.props.index)}>X</button><strike>{this.props.task.taskText}</strike></li>)
-    }
+      return(
+        <div>
+          <button onClick={() => this.props.xClick(this.props.index)}>X</button>
+          <li onClick={() => this.props.toggle(this.props.index)} ><strike>{this.props.task.taskText}</strike></li>
+        </div>)
+      }
     else {
-      return (<li onClick={() => this.props.toggle(this.props.index)} ><button onClick={() => this.props.xClick(this.props.index)}>X</button>{this.props.task.taskText}</li>)
+      return (
+        <div>
+          <button onClick={() => this.props.xClick(this.props.index)}>X</button>
+          <li onClick={() => this.props.toggle(this.props.index)} >{this.props.task.taskText}</li>
+        </div>)
     }
   }
 }
