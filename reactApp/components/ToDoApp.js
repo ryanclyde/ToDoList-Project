@@ -23,7 +23,17 @@ class ToDoApp extends React.Component {
   }
 
   removeTodo(index) {
+    // implement this tempArray to modify this.todos instead of modifying dummyData after I get toggle to work
+    // var tempArray = this.state.todos
     dummyData.splice(index, 1);
+    this.setState({todos: dummyData});
+  }
+
+  toggleTodo(index){
+    // console.log(this.state.todos[index]);
+    var tempObj = this.state.todos[index];
+    tempObj.completed = !tempObj.completed;
+    dummyData.splice(index, 1, tempObj);
     this.setState({todos: dummyData});
   }
 
@@ -31,7 +41,7 @@ class ToDoApp extends React.Component {
     return (
       <div>
         <InputLine submit={(str) => this.addTodo(str)}/>
-        <ToDoList todos={this.state.todos} todoXClick={(index) => this.removeTodo(index)}/>
+        <ToDoList todos={this.state.todos} toggleClick={(index) => this.toggleTodo(index)} todoXClick={(index) => this.removeTodo(index)}/>
       </div>
     )
   }
