@@ -28,7 +28,7 @@ class ToDoList extends React.Component {
   render(){
     return(
       <ul>
-        {dummyData.map((task) => <ToDo task = {task}/>)}
+        {this.props.todos.map((task) => <ToDo task = {task}/>)}
       </ul>
     )
   }
@@ -51,12 +51,21 @@ class InputLine extends React.Component {
 class ToDoApp extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      todos: []
+    }
   }
+
+  componentDidMount() {
+    this.setState({todos: dummyData});
+    console.log(dummyData);
+  }
+
   render() {
     return (
       <div>
         <InputLine/>
-        <ToDoList/>
+        <ToDoList todos={this.state.todos}/>
       </div>
     )
   }
