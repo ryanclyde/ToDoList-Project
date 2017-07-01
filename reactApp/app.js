@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var dummyData = ["Get notes to study", "Conept Tracker", "apply to JPMorg", "Get sleep", "Plan weekend"];
+var dummyData = [{taskText: "figure out the meaning of life", completed: false}, {taskText: "learn to code", completed: true}, {taskText: "Sleep, organization, set goals, productivity", completed: false}];
 
 
 class ToDo extends React.Component {
@@ -11,12 +11,15 @@ class ToDo extends React.Component {
   }
 
   render() {
-    return(
-      <li><button>X</button>{this.props.task}</li>
-    )
+    if(this.props.task.completed) {
+      return(<li><button>X</button><strike>{this.props.task.taskText}</strike></li>)
+    }
+    else {
+      return (<li><button>X</button>{this.props.task.taskText}</li>)
+    }
   }
 }
-
+// style={{textDecoration: "line-through"}}
 
 class ToDoList extends React.Component {
   constructor(props){
@@ -31,5 +34,35 @@ class ToDoList extends React.Component {
   }
 }
 
-ReactDOM.render(<ToDoList />,
+class InputLine extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return(
+      <div>
+        <input placeholder="Search..." className="form-control" type="text" />
+        <input type="submit" value="Submit" />
+      </div>
+    )
+  }
+}
+
+class ToDoApp extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <InputLine/>
+        <ToDoList/>
+      </div>
+    )
+  }
+}
+
+
+
+ReactDOM.render(<ToDoApp />,
    document.getElementById('root'));
