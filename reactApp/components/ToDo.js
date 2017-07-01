@@ -7,10 +7,10 @@ class ToDo extends React.Component {
 
   render() {
     if(this.props.task.completed) {
-      return(<li><button>X</button><strike>{this.props.task.taskText}</strike></li>)
+      return(<li><button onClick={() => this.props.xClick(this.props.index)}>X</button><strike>{this.props.task.taskText}</strike></li>)
     }
     else {
-      return (<li><button>X</button>{this.props.task.taskText}</li>)
+      return (<li><button onClick={() => this.props.xClick(this.props.index)}>X</button>{this.props.task.taskText}</li>)
     }
   }
 }
