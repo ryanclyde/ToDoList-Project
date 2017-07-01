@@ -3,12 +3,25 @@ import React from 'react';
 class InputLine extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      typedText: ""
+    }
   }
+
+  handleTyping(event) {
+    this.setState({typedText: event.target.value})
+  }
+
+  handleSubmit() {
+    this.props.submit(this.state.typedText);
+    this.setState({typedText: ""})
+  }
+
   render() {
     return(
       <div>
-        <input placeholder="Search..." className="form-control" type="text" />
-        <input type="submit" onClick={() => this.props.submit({taskText: "test task"})} value="Submit" />
+        <input type="text" onChange={(event) => this.handleTyping(event)} value={this.state.typedText} placeholder="Search..." className="form-control"  />
+        <input type="submit" onClick={() => this.handleSubmit()} value="Submit" />
       </div>
     )
   }
